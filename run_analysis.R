@@ -135,7 +135,7 @@ names(test)[1] <- "subject"
 names(test)[2] <- "activity"
 
 # Once added subject and activity to each observation, the data frames are complete
-# and can be merged in a new data set. Since observations are indepedent (according 
+# and can be merged in a new data set. Since observations are independent (according 
 # to the specification "Each feature vector is a row on the text file"), and the
 # training and test groups are disjoint sets coming from a random partition 70%/30%
 # of the population, we can just add the training and test observations to perform 
@@ -157,7 +157,7 @@ dim(dataset)
 
 # According to the file features_info.txt provided in the extracted data files, 
 # measurement names of standard deviation and mean include, respectively std() 
-# or mean() as part of the name, so we can reduce the dataset to the subject, 
+# or mean() as part of the name, so we can reduce the data frame to the subject, 
 # activity, and only the measures containing "mean()" or "std()" in the name.
 
 dataset <- cbind(dataset[ , c("subject", "activity")], 
@@ -166,7 +166,7 @@ dataset <- cbind(dataset[ , c("subject", "activity")],
 dim(dataset)
 # [1] 10299    68
 
-# The reduced dataset keeps the number of rows 10299 but the number or variables 
+# The reduced dataset keeps the number of rows 10299 but the number of variables 
 # decreases from 563 to 68, consisting of subjects, activities and measures whose
 # name contains mean() or sd()
 
@@ -274,7 +274,7 @@ colnames(dataset) <- gsub("std\\(\\)", "Std", colnames(dataset))
 colnames(dataset) <- gsub("-", "", colnames(dataset))
 
 # Regarding some of acronyms that cannot be ommitted as "t" for time, or "f" for 
-# frequency, they are not easily interpretable, so it is proper to replace them
+# frequency, they are not easily interpretable, so it is convenient to replace them
 # by a longer string as "Time" or "Frequency" to be more descriptive. The same
 # occurs with the abbreviations "Mag", "Gyro" and "Acc" that stand for magnitude, 
 # gyroscope and accelerometer, respectively.
