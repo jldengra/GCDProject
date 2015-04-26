@@ -65,7 +65,7 @@ These are the instructions.
  		
  	 One more time, after these transformations, the resulting data set will replace our previous __dataset__. Now the set of labels has more appropriate names.
  
-6. Creates a second, independent tidy data set with the average of each variable for each activity and each subject. 
+6. Create a second, independent tidy data set with the average of each variable for each activity and each subject. 
  
  	 We will make use of dplyr package to simplify this task by using the group_by and the summarise_each functions to group by activity and subject and then apply the mean for each variable, storing the result in a new data frame called __tidy.dataset__.
  	 
