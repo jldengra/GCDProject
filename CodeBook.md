@@ -69,7 +69,7 @@ These are the instructions:
  
  	 We will make use of dplyr package to simplify this task by using the group_by and the summarise_each functions to group by activity and subject and then apply the mean for each variable, storing the result in a new data frame called __tidy.dataset__.
  	 
- 	 Finally the tidy data set will be exported to a txt file created with write.table() using row.names = FALSE
+ 	 Finally the tidy data set will be exported to a txt file created with write.table() using row.names = FALSE.
  	 
  	 
 
@@ -81,7 +81,7 @@ These are the instructions:
    
 * __activity__: 
 
-  Name of one of the following six activities that a person performed can perform wearing a smartphone on the waist: WALKING, WALKING_UPSTAIRS, WALKING_DOWNSTAIRS, SITTING, STANDING, or LAYING.
+  Name of one of the following six activities that a person is able to perform wearing a smartphone on the waist: WALKING, WALKING_UPSTAIRS, WALKING_DOWNSTAIRS, SITTING, STANDING, or LAYING.
    
 * __Variables that were estimated from sensor signals__: 
 	
