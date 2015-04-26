@@ -72,10 +72,19 @@ These are the instructions.
  	 Finally the tidy data set will be exported to a txt file created with write.table() using row.names = FALSE
  	 
  	 
-The variables that compose the resulting data set are: 
 
- [1] "subject"                                        
- [2] "activity"                                       
+### Variables in the data set
+
+* Subject: Volunteer within an age bracket of 19-48 years who took part in the experiment.
+  [1] "subject"       
+   
+* Activity: One of the following six activities that a person performed can perform wearing a smartphone on the waist: WALKING, WALKING_UPSTAIRS, WALKING_DOWNSTAIRS, SITTING, STANDING, LAYING).
+  [2] "activity" 
+  
+* Variables that were estimated from sensor signals: 
+	The final data set computes their mean groupes by subject and activity. 
+	Their names have been extended to be self-explanatory. Further information is in the README.txt, and features_info.txt files extracted from the original data set archives.
+                                       
  [3] "TimeBodyAccelerometerMeanX"                     
  [4] "TimeBodyAccelerometerMeanY"                     
  [5] "TimeBodyAccelerometerMeanZ"                     
