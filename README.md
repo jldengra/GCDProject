@@ -9,12 +9,10 @@ The following files are included in this repository:
 * __README.md__
 
 	Overall description of the project repository and files. 
-* __StudyDesign.md__
-
-	Study design describing how the data have been collected.
 * __CodeBook.md__
 
-	Code book describing each variable, the data, and any transformations or work performed to clean up the data.
+	- Study design describing how the data have been collected.
+	- Code book describing each variable, the data, and any transformations or work performed to clean up the data.
 * __run_analysis.R__
 
   Script in R performing the stepwise data cleansing. 
