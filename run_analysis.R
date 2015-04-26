@@ -106,18 +106,19 @@ tail(features)
 # 560 560                 angle(Y,gravityMean)
 # 561 561                 angle(Z,gravityMean)
 
-# Since the values of V1 and the values are sorted numerically, as well as the numbers
+# Since the values of V1 are sorted in numerical order, as well as the numbers
 # suffix of variable names V1, V2, ..., V561 in our training and test data frames, we
-# can make use of the second dimension features$v2 as a vector to rename the variables
+# can make use of the second variable features$v2 vector to rename the variables
 # in our data frames. There is an implicit coercion from factor (feature$V2 values) 
 # to character (column name).
 
 colnames(train) <- features$V2
 colnames(test)  <- features$V2
 
-# At this point, the columns of train and test data frames are properly labeled.
-# Besides these observed features, there are separated files containing the subjects
-# and activity labels for each observation, that should be added to our data frames. 
+# At this point, the names of the columns of train and test data frames have been 
+# initialized from the names of the features. Besides these observed features, there
+# are separated files containing the subjects and activity labels for each observation, 
+# that should be added to our data frames. 
 
 train.subjects   <- read.table("data/UCI HAR Dataset/train/subject_train.txt")
 train.activities <- read.table("data/UCI HAR Dataset/train/y_train.txt")
