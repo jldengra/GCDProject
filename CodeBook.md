@@ -40,8 +40,18 @@ These are the instructions:
    
    Once added subject and activity to each observation, the data frames __train__ and __test__ are complete and can be merged in a new data set. Since observations are independent (according to the specification "_Each feature vector is a row on the text file_"), and the training and test groups are disjoint sets coming from a random partition 70%/30% of the population, we will just add the training and test observations to perform the merge operation, by a row binding in R, saving the result in a data frame called __dataset__ containing the merged sets of observations. 
    
- 3. Extracts only the measurements on the mean and standard deviation for each measurement.
+3. Extracting only the measurements on the mean and standard deviation for each measurement.
  
- 		According to the file "data/UCI HAR Dataset/features_info.txt" provided in the extracted data files, measurement names of standard deviation and mean include, respectively "std()" or "mean()" as part of the name, so we can reduce the data frame to the subject, activity, and only the measures containing "mean()" or "std()" in the name. A column bind operation will be perfomed to join between two data frames extrated from our current data frame called __dataset__: a first with the variables *subject* and *activity*, and a second data containg only the columns whose name matches the substring "mean()" or the substring "step()", making use of regular expressions to allow the subsetting in one step. 
+ 	 According to the file "data/UCI HAR Dataset/features_info.txt" provided in the extracted data files, measurement names of standard deviation and mean include, respectively "std()" or "mean()" as part of the name, so we can reduce the data frame to the subject, activity, and only the measures containing "mean()" or "std()" in the name. A column bind operation will be perfomed to join between two data frames extrated from our current data frame called __dataset__: a first with the variables *subject* and *activity*, and a second data containg only the columns whose name matches the substring "mean()" or the substring "step()", making use of regular expressions to allow the subsetting in one step. 
  				
-	  The resulting reduced data frame will overwrite our data frame __dataset__. It will keep the number of rows but the number of variables, consisting of subjects, activities and measures whose	name contains "mean()" or "sd()".
+	 The resulting reduced data frame will overwrite our data frame __dataset__. It will keep the number of rows but the number of variables, consisting of subjects, activities and measures whose	name contains "mean()" or "sd()".
+
+4. Using descriptive activity names to name the activities in the data set.
+
+	 The variable __activity__ is represented by a number in the current data set. This number is an integer, and its translation is provided in the file extracted as "data/UCI HAR Dataset/activity_labels.txt". We will load a data frame called __activity.names__ and initialize the column names as *activity* and *activityName*. The first column *activity* is a number that coordinates with the homologous variable *activity* in our data set, and the second column is a human-readable description for the activity. We will merge __dataset__ and __activity.name__ making use of the merge function in R. If there are no NA's in dataset$activity, we will be able to perform an inner join, otherwise an outer join. 
+	 
+	 The merged data set will be stored in our data frame __dataset__ overwritting its previous value. There are now two variables __activity__ with the number and __activityName__ with the name. We leave only an activity name because we don't need # a number for an activity (no aggregation operation makes sense for them). 
+   For this, we will update the variable __activity__ with the names in __activityName__, and then remove the activityName column. The activity names appear now instead of the previous activity numbers. Once again, the data frame resulting from these transformations will overwrite the existing __dataset___. 
+   
+   Optionally, we can reorder the columns After the merge operation, __activity__ appears as the first variable and __subject__ as the second. We can swap them again to preserve their original order, but it is not necessary.
+   
