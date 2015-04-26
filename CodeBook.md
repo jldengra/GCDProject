@@ -1,6 +1,6 @@
 Getting and Cleaning Data Project
 =================================
-Study design and code book
+_Study design and code book._
 
 Study design 
 ------------
@@ -75,79 +75,12 @@ These are the instructions.
 
 ### Variables in the data set
 
-* Subject: Volunteer within an age bracket of 19-48 years who took part in the experiment.
-  [1] "subject"       
+* __subject__: Volunteer within an age bracket of 19-48 years who took part in the experiment.
    
-* Activity: One of the following six activities that a person performed can perform wearing a smartphone on the waist: WALKING, WALKING_UPSTAIRS, WALKING_DOWNSTAIRS, SITTING, STANDING, LAYING).
-  [2] "activity" 
+* _activity__: Name of one of the following six activities that a person performed can perform wearing a smartphone on the waist: WALKING, WALKING_UPSTAIRS, WALKING_DOWNSTAIRS, SITTING, STANDING, or LAYING.
+ 
   
 * Variables that were estimated from sensor signals: 
 	The final data set computes their mean groupes by subject and activity. 
 	Their names have been extended to be self-explanatory. Further information is in the README.txt, and features_info.txt files extracted from the original data set archives.
-                                       
- [3] "TimeBodyAccelerometerMeanX"                     
- [4] "TimeBodyAccelerometerMeanY"                     
- [5] "TimeBodyAccelerometerMeanZ"                     
- [6] "TimeBodyAccelerometerStdX"                      
- [7] "TimeBodyAccelerometerStdY"                      
- [8] "TimeBodyAccelerometerStdZ"                      
- [9] "TimeGravityAccelerometerMeanX"                  
-[10] "TimeGravityAccelerometerMeanY"                  
-[11] "TimeGravityAccelerometerMeanZ"                  
-[12] "TimeGravityAccelerometerStdX"                   
-[13] "TimeGravityAccelerometerStdY"                   
-[14] "TimeGravityAccelerometerStdZ"                   
-[15] "TimeBodyAccelerometerJerkMeanX"                 
-[16] "TimeBodyAccelerometerJerkMeanY"                 
-[17] "TimeBodyAccelerometerJerkMeanZ"                 
-[18] "TimeBodyAccelerometerJerkStdX"                  
-[19] "TimeBodyAccelerometerJerkStdY"                  
-[20] "TimeBodyAccelerometerJerkStdZ"                  
-[21] "TimeBodyGyroscopeMeanX"                         
-[22] "TimeBodyGyroscopeMeanY"                         
-[23] "TimeBodyGyroscopeMeanZ"                         
-[24] "TimeBodyGyroscopeStdX"                          
-[25] "TimeBodyGyroscopeStdY"                          
-[26] "TimeBodyGyroscopeStdZ"                          
-[27] "TimeBodyGyroscopeJerkMeanX"                     
-[28] "TimeBodyGyroscopeJerkMeanY"                     
-[29] "TimeBodyGyroscopeJerkMeanZ"                     
-[30] "TimeBodyGyroscopeJerkStdX"                      
-[31] "TimeBodyGyroscopeJerkStdY"                      
-[32] "TimeBodyGyroscopeJerkStdZ"                      
-[33] "TimeBodyAccelerometerMagnitudeMean"             
-[34] "TimeBodyAccelerometerMagnitudeStd"              
-[35] "TimeGravityAccelerometerMagnitudeMean"          
-[36] "TimeGravityAccelerometerMagnitudeStd"           
-[37] "TimeBodyAccelerometerJerkMagnitudeMean"         
-[38] "TimeBodyAccelerometerJerkMagnitudeStd"          
-[39] "TimeBodyGyroscopeMagnitudeMean"                 
-[40] "TimeBodyGyroscopeMagnitudeStd"                  
-[41] "TimeBodyGyroscopeJerkMagnitudeMean"             
-[42] "TimeBodyGyroscopeJerkMagnitudeStd"              
-[43] "FrequencyBodyAccelerometerMeanX"                
-[44] "FrequencyBodyAccelerometerMeanY"                
-[45] "FrequencyBodyAccelerometerMeanZ"                
-[46] "FrequencyBodyAccelerometerStdX"                 
-[47] "FrequencyBodyAccelerometerStdY"                 
-[48] "FrequencyBodyAccelerometerStdZ"                 
-[49] "FrequencyBodyAccelerometerJerkMeanX"            
-[50] "FrequencyBodyAccelerometerJerkMeanY"            
-[51] "FrequencyBodyAccelerometerJerkMeanZ"            
-[52] "FrequencyBodyAccelerometerJerkStdX"             
-[53] "FrequencyBodyAccelerometerJerkStdY"             
-[54] "FrequencyBodyAccelerometerJerkStdZ"             
-[55] "FrequencyBodyGyroscopeMeanX"                    
-[56] "FrequencyBodyGyroscopeMeanY"                    
-[57] "FrequencyBodyGyroscopeMeanZ"                    
-[58] "FrequencyBodyGyroscopeStdX"                     
-[59] "FrequencyBodyGyroscopeStdY"                     
-[60] "FrequencyBodyGyroscopeStdZ"                     
-[61] "FrequencyBodyAccelerometerMagnitudeMean"        
-[62] "FrequencyBodyAccelerometerMagnitudeStd"         
-[63] "FrequencyBodyBodyAccelerometerJerkMagnitudeMean"
-[64] "FrequencyBodyBodyAccelerometerJerkMagnitudeStd" 
-[65] "FrequencyBodyBodyGyroscopeMagnitudeMean"        
-[66] "FrequencyBodyBodyGyroscopeMagnitudeStd"         
-[67] "FrequencyBodyBodyGyroscopeJerkMagnitudeMean"    
-[68] "FrequencyBodyBodyGyroscopeJerkMagnitudeStd"     
+  __TimeBodyAccelerometerMeanX, TimeBodyAccelerometerMeanY, TimeBodyAccelerometerMeanZ, TimeBodyAccelerometerStdX, TimeBodyAccelerometerStdY, TimeBodyAccelerometerStdZ, TimeGravityAccelerometerMeanX, TimeGravityAccelerometerMeanY, TimeGravityAccelerometerMeanZ, TimeGravityAccelerometerStdX, TimeGravityAccelerometerStdY, TimeGravityAccelerometerStdZ, TimeBodyAccelerometerJerkMeanX, TimeBodyAccelerometerJerkMeanY, TimeBodyAccelerometerJerkMeanZ, TimeBodyAccelerometerJerkStdX, TimeBodyAccelerometerJerkStdY, TimeBodyAccelerometerJerkStdZ, TimeBodyGyroscopeMeanX, TimeBodyGyroscopeMeanY, TimeBodyGyroscopeMeanZ, TimeBodyGyroscopeStdX, TimeBodyGyroscopeStdY, TimeBodyGyroscopeStdZ, TimeBodyGyroscopeJerkMeanX, TimeBodyGyroscopeJerkMeanY, TimeBodyGyroscopeJerkMeanZ, TimeBodyGyroscopeJerkStdX, TimeBodyGyroscopeJerkStdY, TimeBodyGyroscopeJerkStdZ, TimeBodyAccelerometerMagnitudeMean, TimeBodyAccelerometerMagnitudeStd, TimeGravityAccelerometerMagnitudeMean, TimeGravityAccelerometerMagnitudeStd, TimeBodyAccelerometerJerkMagnitudeMean, TimeBodyAccelerometerJerkMagnitudeStd, TimeBodyGyroscopeMagnitudeMean, TimeBodyGyroscopeMagnitudeStd, TimeBodyGyroscopeJerkMagnitudeMean, TimeBodyGyroscopeJerkMagnitudeStd, FrequencyBodyAccelerometerMeanX, FrequencyBodyAccelerometerMeanY, FrequencyBodyAccelerometerMeanZ, FrequencyBodyAccelerometerStdX, FrequencyBodyAccelerometerStdY, FrequencyBodyAccelerometerStdZ, FrequencyBodyAccelerometerJerkMeanX, FrequencyBodyAccelerometerJerkMeanY, FrequencyBodyAccelerometerJerkMeanZ, FrequencyBodyAccelerometerJerkStdX, FrequencyBodyAccelerometerJerkStdY, FrequencyBodyAccelerometerJerkStdZ, FrequencyBodyGyroscopeMeanX, FrequencyBodyGyroscopeMeanY, FrequencyBodyGyroscopeMeanZ, FrequencyBodyGyroscopeStdX, FrequencyBodyGyroscopeStdY, FrequencyBodyGyroscopeStdZ, FrequencyBodyAccelerometerMagnitudeMean, FrequencyBodyAccelerometerMagnitudeStd, FrequencyBodyBodyAccelerometerJerkMagnitudeMean, FrequencyBodyBodyAccelerometerJerkMagnitudeStd, FrequencyBodyBodyGyroscopeMagnitudeMean, FrequencyBodyBodyGyroscopeMagnitudeStd, FrequencyBodyBodyGyroscopeJerkMagnitudeMean, FrequencyBodyBodyGyroscopeJerkMagnitudeStd__                       
