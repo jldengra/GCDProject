@@ -165,7 +165,7 @@ dataset <- cbind(dataset[ , c("subject", "activity")],
 dim(dataset)
 # [1] 10299    68
 # The reduced dataset keeps the number of rows 10299 but the number or variables 
-# decreases from 563 to 68, consisting of subjects, activies and measures whose
+# decreases from 563 to 68, consisting of subjects, activities and measures whose
 # name contains mean() or sd()
 
 
@@ -188,12 +188,12 @@ activity.names <- read.table("data/UCI HAR Dataset/activity_labels.txt")
 colnames(activity.names) = c("activity", "activityName")
 
 # Since there are no NA's in activity, we can perform an inner join
-dataset <- merge(dataset, activity.names, by.x="activity", by.y="activity", all = FALSE)
+dataset <- merge(dataset, activity.names, by.x = "activity", by.y = "activity", all = FALSE)
 
 # There are now two variables activity with the number and activityName with the name
 # We can leave only an activity name in the activity variable, because we don't need
-# a number for an activity (no aggregation operation makes sense for them). So we
-# can reasign the variable activity with the names and remove activityName.
+# a number for an activity (no aggregation operation makes sense for them). 
+# We can reassign the variable activity to the names and remove activityName.
 dataset$activity <- dataset$activityName
 dataset <- dataset[ , !(names(dataset) %in% "activityName")]
 
