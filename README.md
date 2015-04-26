@@ -1,7 +1,7 @@
 Getting and Cleaning Data Project
 =================================
 
-This is a project for the peer asignment at Getting and Cleaning Data course provided by Johns Hopkins University through Coursera. 
+This is a project for the peer assessment in the __Getting and Cleaning Data__ course provided by Johns Hopkins University through Coursera. 
 The purpose is collect, work with, and clean a data set.
 
 The following file are included in this repository:
