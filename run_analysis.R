@@ -206,7 +206,7 @@ table(dataset$activity)
 # WALKING_UPSTAIRS  
 # 1544 
 
-# The activity names appear now instead of the previous activity numbers
+# The activity names appear now instead of the previous activity numbers.
 
 head(dataset)
 #    activity subject tBodyAcc-mean()-X tBodyAcc-mean()-Y tBodyAcc-mean()-Z tBodyAcc-std()-X
