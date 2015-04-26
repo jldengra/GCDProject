@@ -156,14 +156,15 @@ dim(dataset)
 
 # According to the file features_info.txt provided in the extracted data files, 
 # measurement names of standard deviation and mean include, respectively std() 
-# or mean() as part of the name, so we can reduce the dataset to only the subject, 
-# activity, and measures containing "mean()" or "std()" in the name
+# or mean() as part of the name, so we can reduce the dataset to the subject, 
+# activity, and only the measures containing "mean()" or "std()" in the name.
 
 dataset <- cbind(dataset[ , c("subject", "activity")], 
                  dataset[ , grep("mean\\(\\)|std\\(\\)", colnames(dataset))])
 
 dim(dataset)
 # [1] 10299    68
+
 # The reduced dataset keeps the number of rows 10299 but the number or variables 
 # decreases from 563 to 68, consisting of subjects, activities and measures whose
 # name contains mean() or sd()
@@ -174,9 +175,11 @@ dim(dataset)
 ##################################################################################
 
 # The variable activity is represented by a number in the current dataset
+
 table (dataset$activity)
 #    1    2    3    4    5    6 
 # 1722 1544 1406 1777 1906 1944 
+
 summary(dataset$activity)
 # Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 # 1.000   2.000   4.000   3.625   5.000   6.000 
@@ -187,13 +190,15 @@ summary(dataset$activity)
 activity.names <- read.table("data/UCI HAR Dataset/activity_labels.txt")
 colnames(activity.names) = c("activity", "activityName")
 
-# Since there are no NA's in activity, we can perform an inner join
+# Since there are no NA's in activity, we can perform an inner join.
+
 dataset <- merge(dataset, activity.names, by.x = "activity", by.y = "activity", all = FALSE)
 
 # There are now two variables activity with the number and activityName with the name
 # We can leave only an activity name in the activity variable, because we don't need
 # a number for an activity (no aggregation operation makes sense for them). 
 # We can reassign the variable activity to the names and remove activityName.
+
 dataset$activity <- dataset$activityName
 dataset <- dataset[ , !(names(dataset) %in% "activityName")]
 
@@ -230,7 +235,8 @@ dataset <- cbind(dataset[ , c("subject", "activity")],
 # 4. Appropriately labels the data set with descriptive variable names.          #
 ##################################################################################
 
-# Let's see the current labels in column names
+# Let's see the current labels in column names.
+
 colnames(dataset)
 # [1] "subject"                     "activity"                    "tBodyAcc-mean()-X"          
 # [4] "tBodyAcc-mean()-Y"           "tBodyAcc-mean()-Z"           "tBodyAcc-std()-X"           
@@ -260,15 +266,15 @@ colnames(dataset)
 # composed by some acronyms unable to be ommitted. The right side of the name could 
 # be somehow shortened by removing symbols "-", "(", ")" which are not needed since
 # we can use capitals in Mean and Std to denote their beginning. Thus we simplify
-# the names getting them unnecessary symbols around.
+# the names getting them without unnecessary symbols around.
 
 colnames(dataset) <- gsub("mean\\(\\)", "Mean", colnames(dataset))
 colnames(dataset) <- gsub("std\\(\\)", "Std", colnames(dataset))
 colnames(dataset) <- gsub("-", "", colnames(dataset))
 
-# Regarding some of acronyms that cannot be ommitted as "t" for time, "f" for 
+# Regarding some of acronyms that cannot be ommitted as "t" for time, or "f" for 
 # frequency, they are not easily interpretable, so it is proper to replace them
-# by a longer string as "Time" and "Frequency" to be more descriptive. The same
+# by a longer string as "Time" or "Frequency" to be more descriptive. The same
 # occurs with the abbreviations "Mag", "Gyro" and "Acc" that stand for magnitude, 
 # gyroscope and accelerometer, respectively.
 
@@ -278,75 +284,9 @@ colnames(dataset) <- gsub("Mag", "Magnitude", colnames(dataset))
 colnames(dataset) <- gsub("Gyro", "Gyroscope", colnames(dataset))
 colnames(dataset) <- gsub("Acc", "Accelerometer", colnames(dataset))
 
-colnames(dataset)
-# [1] "subject"                                        
-# [2] "activity"                                       
-# [3] "TimeBodyAccelerometerMeanX"                     
-# [4] "TimeBodyAccelerometerMeanY"                     
-# [5] "TimeBodyAccelerometerMeanZ"                     
-# [6] "TimeBodyAccelerometerStdX"                      
-# [7] "TimeBodyAccelerometerStdY"                      
-# [8] "TimeBodyAccelerometerStdZ"                      
-# [9] "TimeGravityAccelerometerMeanX"                  
-# [10] "TimeGravityAccelerometerMeanY"                  
-# [11] "TimeGravityAccelerometerMeanZ"                  
-# [12] "TimeGravityAccelerometerStdX"                   
-# [13] "TimeGravityAccelerometerStdY"                   
-# [14] "TimeGravityAccelerometerStdZ"                   
-# [15] "TimeBodyAccelerometerJerkMeanX"                 
-# [16] "TimeBodyAccelerometerJerkMeanY"                 
-# [17] "TimeBodyAccelerometerJerkMeanZ"                 
-# [18] "TimeBodyAccelerometerJerkStdX"                  
-# [19] "TimeBodyAccelerometerJerkStdY"                  
-# [20] "TimeBodyAccelerometerJerkStdZ"                  
-# [21] "TimeBodyGyroscopeMeanX"                         
-# [22] "TimeBodyGyroscopeMeanY"                         
-# [23] "TimeBodyGyroscopeMeanZ"                         
-# [24] "TimeBodyGyroscopeStdX"                          
-# [25] "TimeBodyGyroscopeStdY"                          
-# [26] "TimeBodyGyroscopeStdZ"                          
-# [27] "TimeBodyGyroscopeJerkMeanX"                     
-# [28] "TimeBodyGyroscopeJerkMeanY"                     
-# [29] "TimeBodyGyroscopeJerkMeanZ"                     
-# [30] "TimeBodyGyroscopeJerkStdX"                      
-# [31] "TimeBodyGyroscopeJerkStdY"                      
-# [32] "TimeBodyGyroscopeJerkStdZ"                      
-# [33] "TimeBodyAccelerometerMagnitudeMean"             
-# [34] "TimeBodyAccelerometerMagnitudeStd"              
-# [35] "TimeGravityAccelerometerMagnitudeMean"          
-# [36] "TimeGravityAccelerometerMagnitudeStd"           
-# [37] "TimeBodyAccelerometerJerkMagnitudeMean"         
-# [38] "TimeBodyAccelerometerJerkMagnitudeStd"          
-# [39] "TimeBodyGyroscopeMagnitudeMean"                 
-# [40] "TimeBodyGyroscopeMagnitudeStd"                  
-# [41] "TimeBodyGyroscopeJerkMagnitudeMean"             
-# [42] "TimeBodyGyroscopeJerkMagnitudeStd"              
-# [43] "FrequencyBodyAccelerometerMeanX"                
-# [44] "FrequencyBodyAccelerometerMeanY"                
-# [45] "FrequencyBodyAccelerometerMeanZ"                
-# [46] "FrequencyBodyAccelerometerStdX"                 
-# [47] "FrequencyBodyAccelerometerStdY"                 
-# [48] "FrequencyBodyAccelerometerStdZ"                 
-# [49] "FrequencyBodyAccelerometerJerkMeanX"            
-# [50] "FrequencyBodyAccelerometerJerkMeanY"            
-# [51] "FrequencyBodyAccelerometerJerkMeanZ"            
-# [52] "FrequencyBodyAccelerometerJerkStdX"             
-# [53] "FrequencyBodyAccelerometerJerkStdY"             
-# [54] "FrequencyBodyAccelerometerJerkStdZ"             
-# [55] "FrequencyBodyGyroscopeMeanX"                    
-# [56] "FrequencyBodyGyroscopeMeanY"                    
-# [57] "FrequencyBodyGyroscopeMeanZ"                    
-# [58] "FrequencyBodyGyroscopeStdX"                     
-# [59] "FrequencyBodyGyroscopeStdY"                     
-# [60] "FrequencyBodyGyroscopeStdZ"                     
-# [61] "FrequencyBodyAccelerometerMagnitudeMean"        
-# [62] "FrequencyBodyAccelerometerMagnitudeStd"         
-# [63] "FrequencyBodyBodyAccelerometerJerkMagnitudeMean"
-# [64] "FrequencyBodyBodyAccelerometerJerkMagnitudeStd" 
-# [65] "FrequencyBodyBodyGyroscopeMagnitudeMean"        
-# [66] "FrequencyBodyBodyGyroscopeMagnitudeStd"         
-# [67] "FrequencyBodyBodyGyroscopeJerkMagnitudeMean"    
-# [68] "FrequencyBodyBodyGyroscopeJerkMagnitudeStd"
+# Let's see the resulting column names in a comma-separated string
+paste(colnames(dataset), collapse=", ") 
+# [1] "subject, activity, TimeBodyAccelerometerMeanX, TimeBodyAccelerometerMeanY, TimeBodyAccelerometerMeanZ, TimeBodyAccelerometerStdX, TimeBodyAccelerometerStdY, TimeBodyAccelerometerStdZ, TimeGravityAccelerometerMeanX, TimeGravityAccelerometerMeanY, TimeGravityAccelerometerMeanZ, TimeGravityAccelerometerStdX, TimeGravityAccelerometerStdY, TimeGravityAccelerometerStdZ, TimeBodyAccelerometerJerkMeanX, TimeBodyAccelerometerJerkMeanY, TimeBodyAccelerometerJerkMeanZ, TimeBodyAccelerometerJerkStdX, TimeBodyAccelerometerJerkStdY, TimeBodyAccelerometerJerkStdZ, TimeBodyGyroscopeMeanX, TimeBodyGyroscopeMeanY, TimeBodyGyroscopeMeanZ, TimeBodyGyroscopeStdX, TimeBodyGyroscopeStdY, TimeBodyGyroscopeStdZ, TimeBodyGyroscopeJerkMeanX, TimeBodyGyroscopeJerkMeanY, TimeBodyGyroscopeJerkMeanZ, TimeBodyGyroscopeJerkStdX, TimeBodyGyroscopeJerkStdY, TimeBodyGyroscopeJerkStdZ, TimeBodyAccelerometerMagnitudeMean, TimeBodyAccelerometerMagnitudeStd, TimeGravityAccelerometerMagnitudeMean, TimeGravityAccelerometerMagnitudeStd, TimeBodyAccelerometerJerkMagnitudeMean, TimeBodyAccelerometerJerkMagnitudeStd, TimeBodyGyroscopeMagnitudeMean, TimeBodyGyroscopeMagnitudeStd, TimeBodyGyroscopeJerkMagnitudeMean, TimeBodyGyroscopeJerkMagnitudeStd, FrequencyBodyAccelerometerMeanX, FrequencyBodyAccelerometerMeanY, FrequencyBodyAccelerometerMeanZ, FrequencyBodyAccelerometerStdX, FrequencyBodyAccelerometerStdY, FrequencyBodyAccelerometerStdZ, FrequencyBodyAccelerometerJerkMeanX, FrequencyBodyAccelerometerJerkMeanY, FrequencyBodyAccelerometerJerkMeanZ, FrequencyBodyAccelerometerJerkStdX, FrequencyBodyAccelerometerJerkStdY, FrequencyBodyAccelerometerJerkStdZ, FrequencyBodyGyroscopeMeanX, FrequencyBodyGyroscopeMeanY, FrequencyBodyGyroscopeMeanZ, FrequencyBodyGyroscopeStdX, FrequencyBodyGyroscopeStdY, FrequencyBodyGyroscopeStdZ, FrequencyBodyAccelerometerMagnitudeMean, FrequencyBodyAccelerometerMagnitudeStd, FrequencyBodyBodyAccelerometerJerkMagnitudeMean, FrequencyBodyBodyAccelerometerJerkMagnitudeStd, FrequencyBodyBodyGyroscopeMagnitudeMean, FrequencyBodyBodyGyroscopeMagnitudeStd, FrequencyBodyBodyGyroscopeJerkMagnitudeMean, FrequencyBodyBodyGyroscopeJerkMagnitudeStd"
 
 # Now the set of labels has more appropriate names, that are more descriptive.
 
