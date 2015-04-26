@@ -75,12 +75,17 @@ These are the instructions.
 
 ### Variables in the data set
 
-* __subject__: Volunteer within an age bracket of 19-48 years who took part in the experiment.
+* __subject__: 
+
+  Volunteer within an age bracket of 19-48 years who took part in the experiment.
    
-* _activity__: Name of one of the following six activities that a person performed can perform wearing a smartphone on the waist: WALKING, WALKING_UPSTAIRS, WALKING_DOWNSTAIRS, SITTING, STANDING, or LAYING.
- 
-  
-* Variables that were estimated from sensor signals: 
+* __activity__: 
+
+  Name of one of the following six activities that a person performed can perform wearing a smartphone on the waist: WALKING, WALKING_UPSTAIRS, WALKING_DOWNSTAIRS, SITTING, STANDING, or LAYING.
+   
+* __Variables that were estimated from sensor signals__: 
+	
 	The final data set computes their mean groupes by subject and activity. 
 	Their names have been extended to be self-explanatory. Further information is in the README.txt, and features_info.txt files extracted from the original data set archives.
+	
   __TimeBodyAccelerometerMeanX, TimeBodyAccelerometerMeanY, TimeBodyAccelerometerMeanZ, TimeBodyAccelerometerStdX, TimeBodyAccelerometerStdY, TimeBodyAccelerometerStdZ, TimeGravityAccelerometerMeanX, TimeGravityAccelerometerMeanY, TimeGravityAccelerometerMeanZ, TimeGravityAccelerometerStdX, TimeGravityAccelerometerStdY, TimeGravityAccelerometerStdZ, TimeBodyAccelerometerJerkMeanX, TimeBodyAccelerometerJerkMeanY, TimeBodyAccelerometerJerkMeanZ, TimeBodyAccelerometerJerkStdX, TimeBodyAccelerometerJerkStdY, TimeBodyAccelerometerJerkStdZ, TimeBodyGyroscopeMeanX, TimeBodyGyroscopeMeanY, TimeBodyGyroscopeMeanZ, TimeBodyGyroscopeStdX, TimeBodyGyroscopeStdY, TimeBodyGyroscopeStdZ, TimeBodyGyroscopeJerkMeanX, TimeBodyGyroscopeJerkMeanY, TimeBodyGyroscopeJerkMeanZ, TimeBodyGyroscopeJerkStdX, TimeBodyGyroscopeJerkStdY, TimeBodyGyroscopeJerkStdZ, TimeBodyAccelerometerMagnitudeMean, TimeBodyAccelerometerMagnitudeStd, TimeGravityAccelerometerMagnitudeMean, TimeGravityAccelerometerMagnitudeStd, TimeBodyAccelerometerJerkMagnitudeMean, TimeBodyAccelerometerJerkMagnitudeStd, TimeBodyGyroscopeMagnitudeMean, TimeBodyGyroscopeMagnitudeStd, TimeBodyGyroscopeJerkMagnitudeMean, TimeBodyGyroscopeJerkMagnitudeStd, FrequencyBodyAccelerometerMeanX, FrequencyBodyAccelerometerMeanY, FrequencyBodyAccelerometerMeanZ, FrequencyBodyAccelerometerStdX, FrequencyBodyAccelerometerStdY, FrequencyBodyAccelerometerStdZ, FrequencyBodyAccelerometerJerkMeanX, FrequencyBodyAccelerometerJerkMeanY, FrequencyBodyAccelerometerJerkMeanZ, FrequencyBodyAccelerometerJerkStdX, FrequencyBodyAccelerometerJerkStdY, FrequencyBodyAccelerometerJerkStdZ, FrequencyBodyGyroscopeMeanX, FrequencyBodyGyroscopeMeanY, FrequencyBodyGyroscopeMeanZ, FrequencyBodyGyroscopeStdX, FrequencyBodyGyroscopeStdY, FrequencyBodyGyroscopeStdZ, FrequencyBodyAccelerometerMagnitudeMean, FrequencyBodyAccelerometerMagnitudeStd, FrequencyBodyBodyAccelerometerJerkMagnitudeMean, FrequencyBodyBodyAccelerometerJerkMagnitudeStd, FrequencyBodyBodyGyroscopeMagnitudeMean, FrequencyBodyBodyGyroscopeMagnitudeStd, FrequencyBodyBodyGyroscopeJerkMagnitudeMean, FrequencyBodyBodyGyroscopeJerkMagnitudeStd__                       
