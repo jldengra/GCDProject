@@ -53,7 +53,7 @@ These are the instructions.
 	 The merged data set will be stored in our data frame __dataset__ overwritting its previous value. There are now two variables __activity__ with the number and __activityName__ with the name. We leave only an activity name because we don't need # a number for an activity (no aggregation operation makes sense for them). 
    For this, we will update the variable __activity__ with the names in __activityName__, and then remove the activityName column. The activity names appear now instead of the previous activity numbers. Once again, the data frame resulting from these transformations will overwrite the existing __dataset__. 
    
-   Optionally, we can reorder the columns After the merge operation, __activity__ appears as the first variable and __subject__ as the second. We can swap them again to preserve their original order, but it is not necessary.
+   Optionally, we can reorder the columns After the merge operation, __activity__ appears as the first variable and __subject__ as the second. We can swap them again using column binding to preserve their original order, but it is not necessary.
    
 5. Appropriately label the data set with descriptive variable names.
  
@@ -69,4 +69,76 @@ These are the instructions.
  
  	 We will make use of dplyr package to simplify this task by using the group_by and the summarise_each functions to group by activity and subject and then apply the mean for each variable, storing the result in a new data frame called __tidy.dataset__.
  	 
- 	 Finally the tidy data set will be exported to a txt file created with write.table() using row.names=FALSE
+ 	 Finally the tidy data set will be exported to a txt file created with write.table() using row.names = FALSE
+ 	 
+ 	 
+The variables that compose the resulting data set are: 
+
+ [1] "subject"                                        
+ [2] "activity"                                       
+ [3] "TimeBodyAccelerometerMeanX"                     
+ [4] "TimeBodyAccelerometerMeanY"                     
+ [5] "TimeBodyAccelerometerMeanZ"                     
+ [6] "TimeBodyAccelerometerStdX"                      
+ [7] "TimeBodyAccelerometerStdY"                      
+ [8] "TimeBodyAccelerometerStdZ"                      
+ [9] "TimeGravityAccelerometerMeanX"                  
+[10] "TimeGravityAccelerometerMeanY"                  
+[11] "TimeGravityAccelerometerMeanZ"                  
+[12] "TimeGravityAccelerometerStdX"                   
+[13] "TimeGravityAccelerometerStdY"                   
+[14] "TimeGravityAccelerometerStdZ"                   
+[15] "TimeBodyAccelerometerJerkMeanX"                 
+[16] "TimeBodyAccelerometerJerkMeanY"                 
+[17] "TimeBodyAccelerometerJerkMeanZ"                 
+[18] "TimeBodyAccelerometerJerkStdX"                  
+[19] "TimeBodyAccelerometerJerkStdY"                  
+[20] "TimeBodyAccelerometerJerkStdZ"                  
+[21] "TimeBodyGyroscopeMeanX"                         
+[22] "TimeBodyGyroscopeMeanY"                         
+[23] "TimeBodyGyroscopeMeanZ"                         
+[24] "TimeBodyGyroscopeStdX"                          
+[25] "TimeBodyGyroscopeStdY"                          
+[26] "TimeBodyGyroscopeStdZ"                          
+[27] "TimeBodyGyroscopeJerkMeanX"                     
+[28] "TimeBodyGyroscopeJerkMeanY"                     
+[29] "TimeBodyGyroscopeJerkMeanZ"                     
+[30] "TimeBodyGyroscopeJerkStdX"                      
+[31] "TimeBodyGyroscopeJerkStdY"                      
+[32] "TimeBodyGyroscopeJerkStdZ"                      
+[33] "TimeBodyAccelerometerMagnitudeMean"             
+[34] "TimeBodyAccelerometerMagnitudeStd"              
+[35] "TimeGravityAccelerometerMagnitudeMean"          
+[36] "TimeGravityAccelerometerMagnitudeStd"           
+[37] "TimeBodyAccelerometerJerkMagnitudeMean"         
+[38] "TimeBodyAccelerometerJerkMagnitudeStd"          
+[39] "TimeBodyGyroscopeMagnitudeMean"                 
+[40] "TimeBodyGyroscopeMagnitudeStd"                  
+[41] "TimeBodyGyroscopeJerkMagnitudeMean"             
+[42] "TimeBodyGyroscopeJerkMagnitudeStd"              
+[43] "FrequencyBodyAccelerometerMeanX"                
+[44] "FrequencyBodyAccelerometerMeanY"                
+[45] "FrequencyBodyAccelerometerMeanZ"                
+[46] "FrequencyBodyAccelerometerStdX"                 
+[47] "FrequencyBodyAccelerometerStdY"                 
+[48] "FrequencyBodyAccelerometerStdZ"                 
+[49] "FrequencyBodyAccelerometerJerkMeanX"            
+[50] "FrequencyBodyAccelerometerJerkMeanY"            
+[51] "FrequencyBodyAccelerometerJerkMeanZ"            
+[52] "FrequencyBodyAccelerometerJerkStdX"             
+[53] "FrequencyBodyAccelerometerJerkStdY"             
+[54] "FrequencyBodyAccelerometerJerkStdZ"             
+[55] "FrequencyBodyGyroscopeMeanX"                    
+[56] "FrequencyBodyGyroscopeMeanY"                    
+[57] "FrequencyBodyGyroscopeMeanZ"                    
+[58] "FrequencyBodyGyroscopeStdX"                     
+[59] "FrequencyBodyGyroscopeStdY"                     
+[60] "FrequencyBodyGyroscopeStdZ"                     
+[61] "FrequencyBodyAccelerometerMagnitudeMean"        
+[62] "FrequencyBodyAccelerometerMagnitudeStd"         
+[63] "FrequencyBodyBodyAccelerometerJerkMagnitudeMean"
+[64] "FrequencyBodyBodyAccelerometerJerkMagnitudeStd" 
+[65] "FrequencyBodyBodyGyroscopeMagnitudeMean"        
+[66] "FrequencyBodyBodyGyroscopeMagnitudeStd"         
+[67] "FrequencyBodyBodyGyroscopeJerkMagnitudeMean"    
+[68] "FrequencyBodyBodyGyroscopeJerkMagnitudeStd"     
