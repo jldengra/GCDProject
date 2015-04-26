@@ -1,14 +1,12 @@
-Getting and Cleaning Data
-=========================
+Getting and Cleaning Data Project
+=================================
 
 Study design 
 ------------
 
 The data come from a study called Human Activity Recognition Using Smartphones, and have beeen collected from the recordings of 30 subjects performing activities of daily living (ADL) while carrying a waist-mounted smartphone with embedded inertial sensors.
 
-The data have been collected by annotations taken from video-recorded experiments. 
-
-The data set and attribute basic information is available in the web site where the data was obtained: 
+The data have been collected by annotations taken from video-recorded experiments. The data set and attribute basic information is available in the web site where the data was obtained: 
 
 http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones
 
