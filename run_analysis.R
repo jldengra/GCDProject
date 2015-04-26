@@ -13,6 +13,10 @@
 # From the data set in step 4, creates a second, independent tidy data set with 
 # the average of each variable for each activity and each subject.
 
+##################################################################################
+# 1. Merges the training and the test sets to create one data set.               #
+##################################################################################
+
 # Firstly, it is set as working directory the folder where the source file is.
 # The archive with the project data files is downloaded and extracted to a "data"
 # folder in this directory. 
@@ -112,7 +116,50 @@ colnames(train) <- features$V2
 colnames(test)  <- features$V2
 
 # At this point, the columns of train and test data frames are properly labeled.
+# Besides these observed features, there are separated files containing the subjects
+# and activity labels for each observation, that should be added to our data frames. 
 
+train.subjects   <- read.table("data/UCI HAR Dataset/train/subject_train.txt")
+train.activities <- read.table("data/UCI HAR Dataset/train/y_train.txt")
+test.subjects    <- read.table("data/UCI HAR Dataset/test/subject_test.txt")
+test.activities  <- read.table("data/UCI HAR Dataset/test/y_test.txt")
+
+# Columns subject and activiy are added at the beginning in both data frames
+
+train <- cbind(train.subjects[ , 1], train.activities[ , 1], train)
+test  <- cbind(test.subjects[ , 1], test.activities[ , 1], test)
+names(train)[1] <- "subject"
+names(train)[2] <- "activity"
+names(test)[1] <- "subject"
+names(test)[2] <- "activity"
+
+# Once added subject and activity to each observation, the data frames are complete
+# and can be merged in a new data set.
+
+dataset <- rbind(train, test)
+
+# As it was expected, the resulting data set has 7352 + 2947 = 10299 observations
+# and 561 + 2 = 563 variables.
+
+dim(dataset) 
+# [1] 10299   563
+
+##################################################################################
+# 2. Extracts only the measurements on the mean and standard deviation for each  #
+#    measurement.                                                                #
+##################################################################################
+
+
+
+##################################################################################
+# 3. Uses descriptive activity names to name the activities in the data set      #
+##################################################################################
+# 4. Appropriately labels the data set with descriptive variable names.          #
+##################################################################################
+##################################################################################
+# From the data set in step 4, creates a second, independent tidy data set with  #
+# the average of each variable for each activity and each subject.               #
+##################################################################################
 
 #  Finally the tidy data set is exported to a txt file created with write.table() using
 #  row.names=FALSE
