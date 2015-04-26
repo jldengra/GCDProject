@@ -24,7 +24,7 @@ Code book
 
 This analysis has been included stepwise in the run_analysis.R script, which tries to compile everything neccesary to reproduce the experiment.
 This code book details these steps as well as provides a description for the variables and data sets that take part in the process. 
-These are the instructions.  
+These are the instructions:  
 
 1. Configuring location and data files: 
 
