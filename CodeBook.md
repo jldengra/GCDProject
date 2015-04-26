@@ -55,14 +55,18 @@ These are the instructions.
    
    Optionally, we can reorder the columns After the merge operation, __activity__ appears as the first variable and __subject__ as the second. We can swap them again to preserve their original order, but it is not necessary.
    
- 5. Appropriately label the data set with descriptive variable names.
+5. Appropriately label the data set with descriptive variable names.
  
- 		There are two ways to improve the variable names: one is minimizing their length by removing unnecessary symbols, and another is by changing some parts to improve their readability. 
+   There are two ways to improve the variable names: one is minimizing their length by removing unnecessary symbols, and another is by changing some parts to improve their readability. 
  		
- 		The variables for the measurements are difficult to shorten, since they are already composed by some acronyms unable to be ommitted. The right side of the name could be somehow shortened by removing symbols "-", "(", ")" which are not needed since we can use capitals in Mean and Std to denote their beginning. So we will delete all the ocurrences of the symbols "-", "(", ")", by replacing "mean()" by "Mean", "std()" by "Std" and "-" by "". Thus we simplify the names getting them without unnecessary symbols around and leave means and standards deviation better delimited beginning with a capital.
+ 	 The variables for the measurements are difficult to shorten, since they are already composed by some acronyms unable to be ommitted. The right side of the name could be somehow shortened by removing symbols "-", "(", ")" which are not needed since we can use capitals in Mean and Std to denote their beginning. So we will delete all the ocurrences of the symbols "-", "(", ")", by replacing "mean()" by "Mean", "std()" by "Std" and "-" by "". Thus we simplify the names getting them without unnecessary symbols around and leave means and standards deviation better delimited beginning with a capital.
  		
- 		Regarding some of acronyms that cannot be ommitted as "t" at the beginning for time, or "f" at the beginning for frequency, they are not easily interpretable, so it is convenient to replace them by a longer string as "Time" or "Frequency" to be more descriptive. The same occurs with the abbreviations "Mag", "Gyro" and "Acc" that stand for magnitude, gyroscope and accelerometer, respectively. So, we will change the names of the columns by replacing "t" and "f" at the beginning, "Mag", "Gyro" and "Acc" with the strings "Time", "Frecuency", "Magnitude", "Gyroscope", and "Accelerometer", respectively, all the new values beginning with a capital for a better distinction.
+ 	 Regarding some of acronyms that cannot be ommitted as "t" at the beginning for time, or "f" at the beginning for frequency, they are not easily interpretable, so it is convenient to replace them by a longer string as "Time" or "Frequency" to be more descriptive. The same occurs with the abbreviations "Mag", "Gyro" and "Acc" that stand for magnitude, gyroscope and accelerometer, respectively. So, we will change the names of the columns by replacing "t" and "f" at the beginning, "Mag", "Gyro" and "Acc" with the strings "Time", "Frecuency", "Magnitude", "Gyroscope", and "Accelerometer", respectively, all the new values beginning with a capital for a better distinction.
  		
- 		After this transformations, the resulting data set replaces our previous __dataset__. Now the set of labels has more appropriate names.
- 		
+ 	 One more time, after these transformations, the resulting data set will replace our previous __dataset__. Now the set of labels has more appropriate names.
  
+6. Creates a second, independent tidy data set with the average of each variable for each activity and each subject. 
+ 
+ 	 We will make use of dplyr package to simplify this task by using the group_by and the summarise_each functions to group by activity and subject and then apply the mean for each variable, storing the result in a new data frame called __tidy.dataset__.
+ 	 
+ 	 Finally the tidy data set will be exported to a txt file created with write.table() using row.names=FALSE
