@@ -22,7 +22,7 @@ https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Datas
 Code book 
 ---------
 
-This study has been included step by step in the run_analysis.R script, which tries to compilate everything neccesary to reproduce the experiment and analysis.
+This study has been included step by step in the run_analysis.R script, which tries to compile everything neccesary to reproduce the experiment and analysis.
 
 1. Configuring location and data files: A folder was created with the name __GDProject__, including the files README.md, CodeBook.md and run_analysis.R and a subfolder called "data". The working directory has been set to the the path of the folder __GDProject__. The archive containing the data has been dowloaded and unzipped from the R script into the data folder, and a subdirectory "data/UCI HAR Dataset" has been created containing all the extracted 
 data files as result. 
