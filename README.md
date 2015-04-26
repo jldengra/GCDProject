@@ -8,8 +8,8 @@ The following file are included in this repository:
 
 * __README.md__
 
-	Description of the projects and files. 
-* __StudyDesing.md__
+	Overall description of the project repository and files. 
+* __StudyDesign.md__
 
 	Study design describing how the data have been collected.
 * __CodeBook.md__
