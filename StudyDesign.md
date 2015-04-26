@@ -14,6 +14,6 @@ A more detailed description is available in the names file provided in the data 
 
 http://archive.ics.uci.edu/ml/machine-learning-databases/00240/UCI%20HAR%20Dataset.names
 
-The data for the project is contained in the following archive:
+The data files for the project are provided in the following archive:
 
 https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip 
