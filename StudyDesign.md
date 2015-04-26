@@ -10,7 +10,7 @@ The data have been collected by annotations taken from video-recorded experiment
 
 http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones
 
-A more detailed description is available in the names file provided in the data folder: 
+A more detailed description is available in the names file: 
 
 http://archive.ics.uci.edu/ml/machine-learning-databases/00240/UCI%20HAR%20Dataset.names
 
