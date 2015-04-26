@@ -309,4 +309,4 @@ tidy.dataset <- summarise_each(activity.subject, funs(mean))
 #  Finally the tidy data set is exported to a txt file created with write.table()
 #  using row.names=FALSE
 
-write.table(tidy.dataset, "data/TidyData.txt", row.names = FALSE)
+write.table(tidy.dataset, "TidyData.txt", row.names = FALSE)
