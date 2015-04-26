@@ -16,7 +16,7 @@ The following files are included in this repository:
 * __run_analysis.R__
 
   Script in R performing the stepwise data cleansing.
-  It consists of an ETL process, since it is intended to all the necessary extractions, transformations and load operations required to perform the cleansing process according to the steps gathered in the code book. 
+  It consists of an ETL process, since it is intended to include all the necessary extractions, transformations and load operations required to perform the cleansing process according to the steps gathered in the code book. 
    
 * __TidyData.txt__
 
