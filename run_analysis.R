@@ -256,42 +256,99 @@ colnames(dataset)
 # [64] "fBodyBodyAccJerkMag-std()"   "fBodyBodyGyroMag-mean()"     "fBodyBodyGyroMag-std()"     
 # [67] "fBodyBodyGyroJerkMag-mean()" "fBodyBodyGyroJerkMag-std()" 
 
-# The variables for the measurments are difficult to simplify, since they are already 
+# The variables for the measurements are difficult to shorten, since they are already 
 # composed by some acronyms unable to be ommitted. The right side of the name could 
 # be somehow shortened by removing symbols "-", "(", ")" which are not needed since
-# we can use capitals in Mean and Std to denote their beginning.
+# we can use capitals in Mean and Std to denote their beginning. Thus we simplify
+# the names getting them unnecessary symbols around.
 
 colnames(dataset) <- gsub("mean\\(\\)", "Mean", colnames(dataset))
 colnames(dataset) <- gsub("std\\(\\)", "Std", colnames(dataset))
 colnames(dataset) <- gsub("-", "", colnames(dataset))
 
-colnames(dataset)
-# [1] "subject"                  "activity"                 "tBodyAccMeanX"           
-# [4] "tBodyAccMeanY"            "tBodyAccMeanZ"            "tBodyAccStdX"            
-# [7] "tBodyAccStdY"             "tBodyAccStdZ"             "tGravityAccMeanX"        
-# [10] "tGravityAccMeanY"         "tGravityAccMeanZ"         "tGravityAccStdX"         
-# [13] "tGravityAccStdY"          "tGravityAccStdZ"          "tBodyAccJerkMeanX"       
-# [16] "tBodyAccJerkMeanY"        "tBodyAccJerkMeanZ"        "tBodyAccJerkStdX"        
-# [19] "tBodyAccJerkStdY"         "tBodyAccJerkStdZ"         "tBodyGyroMeanX"          
-# [22] "tBodyGyroMeanY"           "tBodyGyroMeanZ"           "tBodyGyroStdX"           
-# [25] "tBodyGyroStdY"            "tBodyGyroStdZ"            "tBodyGyroJerkMeanX"      
-# [28] "tBodyGyroJerkMeanY"       "tBodyGyroJerkMeanZ"       "tBodyGyroJerkStdX"       
-# [31] "tBodyGyroJerkStdY"        "tBodyGyroJerkStdZ"        "tBodyAccMagMean"         
-# [34] "tBodyAccMagStd"           "tGravityAccMagMean"       "tGravityAccMagStd"       
-# [37] "tBodyAccJerkMagMean"      "tBodyAccJerkMagStd"       "tBodyGyroMagMean"        
-# [40] "tBodyGyroMagStd"          "tBodyGyroJerkMagMean"     "tBodyGyroJerkMagStd"     
-# [43] "fBodyAccMeanX"            "fBodyAccMeanY"            "fBodyAccMeanZ"           
-# [46] "fBodyAccStdX"             "fBodyAccStdY"             "fBodyAccStdZ"            
-# [49] "fBodyAccJerkMeanX"        "fBodyAccJerkMeanY"        "fBodyAccJerkMeanZ"       
-# [52] "fBodyAccJerkStdX"         "fBodyAccJerkStdY"         "fBodyAccJerkStdZ"        
-# [55] "fBodyGyroMeanX"           "fBodyGyroMeanY"           "fBodyGyroMeanZ"          
-# [58] "fBodyGyroStdX"            "fBodyGyroStdY"            "fBodyGyroStdZ"           
-# [61] "fBodyAccMagMean"          "fBodyAccMagStd"           "fBodyBodyAccJerkMagMean" 
-# [64] "fBodyBodyAccJerkMagStd"   "fBodyBodyGyroMagMean"     "fBodyBodyGyroMagStd"     
-# [67] "fBodyBodyGyroJerkMagMean" "fBodyBodyGyroJerkMagStd" 
+# Regarding some of acronyms that cannot be ommitted as "t" for time, "f" for 
+# frequency, they are not easily interpretable, so it is proper to replace them
+# by a longer string as "Time" and "Frequency" to be more descriptive. The same
+# occurs with the abbreviations "Mag", "Gyro" and "Acc" that stand for magnitude, 
+# gyroscope and accelerometer, respectively.
 
-# Now the set of labels has more appropriate names, that are equally descriptive
-# but simplified without unnecessary symbols around.
+colnames(dataset) <- gsub("^t", "Time", colnames(dataset))
+colnames(dataset) <- gsub("^f", "Frequency", colnames(dataset))
+colnames(dataset) <- gsub("Mag", "Magnitude", colnames(dataset))
+colnames(dataset) <- gsub("Gyro", "Gyroscope", colnames(dataset))
+colnames(dataset) <- gsub("Acc", "Accelerometer", colnames(dataset))
+
+colnames(dataset)
+# [1] "subject"                                        
+# [2] "activity"                                       
+# [3] "TimeBodyAccelerometerMeanX"                     
+# [4] "TimeBodyAccelerometerMeanY"                     
+# [5] "TimeBodyAccelerometerMeanZ"                     
+# [6] "TimeBodyAccelerometerStdX"                      
+# [7] "TimeBodyAccelerometerStdY"                      
+# [8] "TimeBodyAccelerometerStdZ"                      
+# [9] "TimeGravityAccelerometerMeanX"                  
+# [10] "TimeGravityAccelerometerMeanY"                  
+# [11] "TimeGravityAccelerometerMeanZ"                  
+# [12] "TimeGravityAccelerometerStdX"                   
+# [13] "TimeGravityAccelerometerStdY"                   
+# [14] "TimeGravityAccelerometerStdZ"                   
+# [15] "TimeBodyAccelerometerJerkMeanX"                 
+# [16] "TimeBodyAccelerometerJerkMeanY"                 
+# [17] "TimeBodyAccelerometerJerkMeanZ"                 
+# [18] "TimeBodyAccelerometerJerkStdX"                  
+# [19] "TimeBodyAccelerometerJerkStdY"                  
+# [20] "TimeBodyAccelerometerJerkStdZ"                  
+# [21] "TimeBodyGyroscopeMeanX"                         
+# [22] "TimeBodyGyroscopeMeanY"                         
+# [23] "TimeBodyGyroscopeMeanZ"                         
+# [24] "TimeBodyGyroscopeStdX"                          
+# [25] "TimeBodyGyroscopeStdY"                          
+# [26] "TimeBodyGyroscopeStdZ"                          
+# [27] "TimeBodyGyroscopeJerkMeanX"                     
+# [28] "TimeBodyGyroscopeJerkMeanY"                     
+# [29] "TimeBodyGyroscopeJerkMeanZ"                     
+# [30] "TimeBodyGyroscopeJerkStdX"                      
+# [31] "TimeBodyGyroscopeJerkStdY"                      
+# [32] "TimeBodyGyroscopeJerkStdZ"                      
+# [33] "TimeBodyAccelerometerMagnitudeMean"             
+# [34] "TimeBodyAccelerometerMagnitudeStd"              
+# [35] "TimeGravityAccelerometerMagnitudeMean"          
+# [36] "TimeGravityAccelerometerMagnitudeStd"           
+# [37] "TimeBodyAccelerometerJerkMagnitudeMean"         
+# [38] "TimeBodyAccelerometerJerkMagnitudeStd"          
+# [39] "TimeBodyGyroscopeMagnitudeMean"                 
+# [40] "TimeBodyGyroscopeMagnitudeStd"                  
+# [41] "TimeBodyGyroscopeJerkMagnitudeMean"             
+# [42] "TimeBodyGyroscopeJerkMagnitudeStd"              
+# [43] "FrequencyBodyAccelerometerMeanX"                
+# [44] "FrequencyBodyAccelerometerMeanY"                
+# [45] "FrequencyBodyAccelerometerMeanZ"                
+# [46] "FrequencyBodyAccelerometerStdX"                 
+# [47] "FrequencyBodyAccelerometerStdY"                 
+# [48] "FrequencyBodyAccelerometerStdZ"                 
+# [49] "FrequencyBodyAccelerometerJerkMeanX"            
+# [50] "FrequencyBodyAccelerometerJerkMeanY"            
+# [51] "FrequencyBodyAccelerometerJerkMeanZ"            
+# [52] "FrequencyBodyAccelerometerJerkStdX"             
+# [53] "FrequencyBodyAccelerometerJerkStdY"             
+# [54] "FrequencyBodyAccelerometerJerkStdZ"             
+# [55] "FrequencyBodyGyroscopeMeanX"                    
+# [56] "FrequencyBodyGyroscopeMeanY"                    
+# [57] "FrequencyBodyGyroscopeMeanZ"                    
+# [58] "FrequencyBodyGyroscopeStdX"                     
+# [59] "FrequencyBodyGyroscopeStdY"                     
+# [60] "FrequencyBodyGyroscopeStdZ"                     
+# [61] "FrequencyBodyAccelerometerMagnitudeMean"        
+# [62] "FrequencyBodyAccelerometerMagnitudeStd"         
+# [63] "FrequencyBodyBodyAccelerometerJerkMagnitudeMean"
+# [64] "FrequencyBodyBodyAccelerometerJerkMagnitudeStd" 
+# [65] "FrequencyBodyBodyGyroscopeMagnitudeMean"        
+# [66] "FrequencyBodyBodyGyroscopeMagnitudeStd"         
+# [67] "FrequencyBodyBodyGyroscopeJerkMagnitudeMean"    
+# [68] "FrequencyBodyBodyGyroscopeJerkMagnitudeStd"
+
+# Now the set of labels has more appropriate names, that are more descriptive.
 
 
 ##################################################################################
