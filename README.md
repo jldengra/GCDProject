@@ -18,3 +18,6 @@ The following files are included in this repository:
 * __run_analysis.R__
 
   Script in R performing the stepwise data cleansing. 
+* __TidyData.txt__
+
+	Tidy data set resulting from the cleansing process.
