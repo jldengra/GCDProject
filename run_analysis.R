@@ -9,9 +9,9 @@
 #    measurement. 
 # 3. Uses descriptive activity names to name the activities in the data set
 # 4. Appropriately labels the data set with descriptive variable names. 
-# 
-# From the data set in step 4, creates a second, independent tidy data set with 
-# the average of each variable for each activity and each subject.
+# 5. From the data set in step 4, creates a second, independent tidy data set 
+#    with the average of each variable for each activity and each subject.
+
 
 ##################################################################################
 # 1. Merges the training and the test sets to create one data set.               #
@@ -134,32 +134,179 @@ names(test)[1] <- "subject"
 names(test)[2] <- "activity"
 
 # Once added subject and activity to each observation, the data frames are complete
-# and can be merged in a new data set.
+# and can be merged in a new data set. Since observations are indepedent (according 
+# to the specification "Each feature vector is a row on the text file"), and the
+# training and test groups are disjoint sets coming from a random partition 70%/30%
+# of the population, we can just add the training and test observations to perform 
+# the merge operation.
 
 dataset <- rbind(train, test)
+
+dim(dataset) 
+# [1] 10299   563
 
 # As it was expected, the resulting data set has 7352 + 2947 = 10299 observations
 # and 561 + 2 = 563 variables.
 
-dim(dataset) 
-# [1] 10299   563
 
 ##################################################################################
 # 2. Extracts only the measurements on the mean and standard deviation for each  #
 #    measurement.                                                                #
 ##################################################################################
 
+# According to the file features_info.txt provided in the extracted data files, 
+# measurement names of standard deviation and mean include, respectively std() 
+# or mean() as part of the name, so we can reduce the dataset to only the subject, 
+# activity, and measures containing "mean()" or "std()" in the name
+
+dataset <- cbind(dataset[ , c("subject", "activity")], 
+                 dataset[ , grep("mean\\(\\)|std\\(\\)", colnames(dataset))])
+
+dim(dataset)
+# [1] 10299    68
+# The reduced dataset keeps the number of rows 10299 but the number or variables 
+# decreases from 563 to 68, consisting of subjects, activies and measures whose
+# name contains mean() or sd()
 
 
 ##################################################################################
 # 3. Uses descriptive activity names to name the activities in the data set      #
 ##################################################################################
+
+# The variable activity is represented by a number in the current dataset
+table (dataset$activity)
+#    1    2    3    4    5    6 
+# 1722 1544 1406 1777 1906 1944 
+summary(dataset$activity)
+# Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+# 1.000   2.000   4.000   3.625   5.000   6.000 
+
+# This number is an integer between 1 and 6, and its translation is provided in 
+# the file extracted as "activity_labels.txt". 
+
+activity.names <- read.table("data/UCI HAR Dataset/activity_labels.txt")
+colnames(activity.names) = c("activity", "activityName")
+
+# Since there are no NA's in activity, we can perform an inner join
+dataset <- merge(dataset, activity.names, by.x="activity", by.y="activity", all = FALSE)
+
+# There are now two variables activity with the number and activityName with the name
+# We can leave only an activity name in the activity variable, because we don't need
+# a number for an activity (no aggregation operation makes sense for them). So we
+# can reasign the variable activity with the names and remove activityName.
+dataset$activity <- dataset$activityName
+dataset <- dataset[ , !(names(dataset) %in% "activityName")]
+
+dim(dataset)
+# [1] 10299    68
+
+table(dataset$activity)
+# LAYING            SITTING           STANDING            WALKING WALKING_DOWNSTAIRS 
+# 1944               1777               1906               1722               1406 
+# WALKING_UPSTAIRS  
+# 1544 
+
+# The activity names appear now instead of the previous activity numbers
+
+head(dataset)
+#    activity subject tBodyAcc-mean()-X tBodyAcc-mean()-Y tBodyAcc-mean()-Z tBodyAcc-std()-X
+# 1  WALKING       7         0.3016485      -0.026883636       -0.09579580       -0.3801243
+# 2  WALKING       5         0.3433592      -0.003426473       -0.10154465       -0.2011536
+# 3  WALKING       6         0.2696745       0.010907280       -0.07494859       -0.3366399
+# 4  WALKING      23         0.2681938      -0.012730069       -0.09365263       -0.3836978
+# 5  WALKING       7         0.3141912      -0.008695973       -0.12456099       -0.3558778
+# 6  WALKING       7         0.2032763      -0.009764083       -0.15139663       -0.4286661
+# 
+# ...
+
+# After the inner join, "activity" appears as the first variable and "subject as 
+# the second. We can swap them again to preserve their original order: 
+
+dataset <- cbind(dataset[ , c("subject", "activity")], 
+                 dataset[ , !(names(dataset) %in% c("subject", "activity"))])
+
+
+##################################################################################
 # 4. Appropriately labels the data set with descriptive variable names.          #
 ##################################################################################
+
+# Let's see the current labels in column names
+colnames(dataset)
+# [1] "subject"                     "activity"                    "tBodyAcc-mean()-X"          
+# [4] "tBodyAcc-mean()-Y"           "tBodyAcc-mean()-Z"           "tBodyAcc-std()-X"           
+# [7] "tBodyAcc-std()-Y"            "tBodyAcc-std()-Z"            "tGravityAcc-mean()-X"       
+# [10] "tGravityAcc-mean()-Y"        "tGravityAcc-mean()-Z"        "tGravityAcc-std()-X"        
+# [13] "tGravityAcc-std()-Y"         "tGravityAcc-std()-Z"         "tBodyAccJerk-mean()-X"      
+# [16] "tBodyAccJerk-mean()-Y"       "tBodyAccJerk-mean()-Z"       "tBodyAccJerk-std()-X"       
+# [19] "tBodyAccJerk-std()-Y"        "tBodyAccJerk-std()-Z"        "tBodyGyro-mean()-X"         
+# [22] "tBodyGyro-mean()-Y"          "tBodyGyro-mean()-Z"          "tBodyGyro-std()-X"          
+# [25] "tBodyGyro-std()-Y"           "tBodyGyro-std()-Z"           "tBodyGyroJerk-mean()-X"     
+# [28] "tBodyGyroJerk-mean()-Y"      "tBodyGyroJerk-mean()-Z"      "tBodyGyroJerk-std()-X"      
+# [31] "tBodyGyroJerk-std()-Y"       "tBodyGyroJerk-std()-Z"       "tBodyAccMag-mean()"         
+# [34] "tBodyAccMag-std()"           "tGravityAccMag-mean()"       "tGravityAccMag-std()"       
+# [37] "tBodyAccJerkMag-mean()"      "tBodyAccJerkMag-std()"       "tBodyGyroMag-mean()"        
+# [40] "tBodyGyroMag-std()"          "tBodyGyroJerkMag-mean()"     "tBodyGyroJerkMag-std()"     
+# [43] "fBodyAcc-mean()-X"           "fBodyAcc-mean()-Y"           "fBodyAcc-mean()-Z"          
+# [46] "fBodyAcc-std()-X"            "fBodyAcc-std()-Y"            "fBodyAcc-std()-Z"           
+# [49] "fBodyAccJerk-mean()-X"       "fBodyAccJerk-mean()-Y"       "fBodyAccJerk-mean()-Z"      
+# [52] "fBodyAccJerk-std()-X"        "fBodyAccJerk-std()-Y"        "fBodyAccJerk-std()-Z"       
+# [55] "fBodyGyro-mean()-X"          "fBodyGyro-mean()-Y"          "fBodyGyro-mean()-Z"         
+# [58] "fBodyGyro-std()-X"           "fBodyGyro-std()-Y"           "fBodyGyro-std()-Z"          
+# [61] "fBodyAccMag-mean()"          "fBodyAccMag-std()"           "fBodyBodyAccJerkMag-mean()" 
+# [64] "fBodyBodyAccJerkMag-std()"   "fBodyBodyGyroMag-mean()"     "fBodyBodyGyroMag-std()"     
+# [67] "fBodyBodyGyroJerkMag-mean()" "fBodyBodyGyroJerkMag-std()" 
+
+# The variables for the measurments are difficult to simplify, since they are already 
+# composed by some acronyms unable to be ommitted. The right side of the name could 
+# be somehow shortened by removing symbols "-", "(", ")" which are not needed since
+# we can use capitals in Mean and Std to denote their beginning.
+
+colnames(dataset) <- gsub("mean\\(\\)", "Mean", colnames(dataset))
+colnames(dataset) <- gsub("std\\(\\)", "Std", colnames(dataset))
+colnames(dataset) <- gsub("-", "", colnames(dataset))
+
+colnames(dataset)
+# [1] "subject"                  "activity"                 "tBodyAccMeanX"           
+# [4] "tBodyAccMeanY"            "tBodyAccMeanZ"            "tBodyAccStdX"            
+# [7] "tBodyAccStdY"             "tBodyAccStdZ"             "tGravityAccMeanX"        
+# [10] "tGravityAccMeanY"         "tGravityAccMeanZ"         "tGravityAccStdX"         
+# [13] "tGravityAccStdY"          "tGravityAccStdZ"          "tBodyAccJerkMeanX"       
+# [16] "tBodyAccJerkMeanY"        "tBodyAccJerkMeanZ"        "tBodyAccJerkStdX"        
+# [19] "tBodyAccJerkStdY"         "tBodyAccJerkStdZ"         "tBodyGyroMeanX"          
+# [22] "tBodyGyroMeanY"           "tBodyGyroMeanZ"           "tBodyGyroStdX"           
+# [25] "tBodyGyroStdY"            "tBodyGyroStdZ"            "tBodyGyroJerkMeanX"      
+# [28] "tBodyGyroJerkMeanY"       "tBodyGyroJerkMeanZ"       "tBodyGyroJerkStdX"       
+# [31] "tBodyGyroJerkStdY"        "tBodyGyroJerkStdZ"        "tBodyAccMagMean"         
+# [34] "tBodyAccMagStd"           "tGravityAccMagMean"       "tGravityAccMagStd"       
+# [37] "tBodyAccJerkMagMean"      "tBodyAccJerkMagStd"       "tBodyGyroMagMean"        
+# [40] "tBodyGyroMagStd"          "tBodyGyroJerkMagMean"     "tBodyGyroJerkMagStd"     
+# [43] "fBodyAccMeanX"            "fBodyAccMeanY"            "fBodyAccMeanZ"           
+# [46] "fBodyAccStdX"             "fBodyAccStdY"             "fBodyAccStdZ"            
+# [49] "fBodyAccJerkMeanX"        "fBodyAccJerkMeanY"        "fBodyAccJerkMeanZ"       
+# [52] "fBodyAccJerkStdX"         "fBodyAccJerkStdY"         "fBodyAccJerkStdZ"        
+# [55] "fBodyGyroMeanX"           "fBodyGyroMeanY"           "fBodyGyroMeanZ"          
+# [58] "fBodyGyroStdX"            "fBodyGyroStdY"            "fBodyGyroStdZ"           
+# [61] "fBodyAccMagMean"          "fBodyAccMagStd"           "fBodyBodyAccJerkMagMean" 
+# [64] "fBodyBodyAccJerkMagStd"   "fBodyBodyGyroMagMean"     "fBodyBodyGyroMagStd"     
+# [67] "fBodyBodyGyroJerkMagMean" "fBodyBodyGyroJerkMagStd" 
+
+# Now the set of labels has more appropriate names, that are equally descriptive
+# but simplified without unnecessary symbols around.
+
+
 ##################################################################################
-# From the data set in step 4, creates a second, independent tidy data set with  #
-# the average of each variable for each activity and each subject.               #
+# 5. From the data set in step 4, creates a second, independent tidy data set    #
+#    with the average of each variable for each activity and each subject.       #
 ##################################################################################
 
-#  Finally the tidy data set is exported to a txt file created with write.table() using
-#  row.names=FALSE
+# We can make use of dplyr package to simplify this task by using the group_by
+# and the summarise_each functions to group and apply the mean for each variable 
+
+library(dplyr)
+activity.subject <- group_by(dataset, activity, subject)
+tidy.dataset <- summarise_each(activity.subject, funs(mean))
+
+#  Finally the tidy data set is exported to a txt file created with write.table()
+#  using row.names=FALSE
+
+write.table(tidy.dataset, "data/TidyData.txt", row.names = FALSE)
